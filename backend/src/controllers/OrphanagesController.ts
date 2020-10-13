@@ -8,6 +8,12 @@ const OrphanagesController = {
     const orphanages = await orphanagesRepository.find();
     return response.json(orphanages);
   },
+  async show(request: Request, response: Response) {
+    const { id } = request.params;
+    const orphanagesRepository = getRepository('orphanages');
+    const orphanage = await orphanagesRepository.findOneOrFail(id);
+    return response.json(orphanage);
+  },
   async create(request: Request, response: Response)  {
     const {
       name,
