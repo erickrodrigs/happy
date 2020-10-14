@@ -14,3 +14,14 @@
 Add the following script in package.json to run server:
 
 * ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts
+
+## Database
+
+* yarn add typeorm sqlite3
+
+add following script in package.json:
+* typeorm": "ts-node-dev ./node_modules typeorm/cli.js"
+
+To run and revert migrations:
+* yarn typeorm migration:run
+* yarn typeorm migration:revert
