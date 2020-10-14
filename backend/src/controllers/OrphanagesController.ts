@@ -5,13 +5,17 @@ import Orphanage from '../models/Orphanage';
 const OrphanagesController = {
   async index(request: Request, response: Response) {
     const orphanagesRepository = getRepository('orphanages');
-    const orphanages = await orphanagesRepository.find();
+    const orphanages = await orphanagesRepository.find({
+      relations: ['images']
+    });
     return response.json(orphanages);
   },
   async show(request: Request, response: Response) {
     const { id } = request.params;
     const orphanagesRepository = getRepository('orphanages');
-    const orphanage = await orphanagesRepository.findOneOrFail(id);
+    const orphanage = await orphanagesRepository.findOneOrFail(id, {
+      relations: ['images']
+    });
     return response.json(orphanage);
   },
   async create(request: Request, response: Response)  {
